@@ -22,7 +22,7 @@ Welcome to the Python Data Structures and Algorithms repository! 🚀 This compr
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/your-username/your-repo.git`
+1. Clone the repository: `git clone https://github.com/Vivek-Jd-18/PY_DSA`
 2. Explore the `src` directory for Python implementations.
 3. Dive into detailed explanations in each module.
 
