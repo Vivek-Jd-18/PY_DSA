@@ -10,7 +10,7 @@ def binary_search(_list, _target):
         if mid_val == _target:
             return mid_index
         elif mid_val < _target:
-            low = mid_index + 1
+            low = mid_index + 1 
         elif mid_val > _target:
             high = mid_index - 1
     
