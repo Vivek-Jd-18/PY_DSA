@@ -1,3 +1,6 @@
+# example to find first occurance of an element,
+# using binary search
+
 from jovian.pythondsa import evaluate_test_case
 
 def filter_duplicates(_list, _target, _mid_index):
@@ -63,14 +66,14 @@ test6 = {
     "_list": [1, 2, 2, 2, 3, 3, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 8, 9],
     "_target": 3
   },
-  "output": 5
+  "output": 4
 }
 test7 = {
   "input": {
     "_list": [1, 2, 3, 3, 4, 4, 4, 4, 4, 5, 6, 6, 7, 7, 7, 7, 8, 9, 9, 10],
     "_target": 4
   },
-  "output": 3
+  "output": 4
 }
 
 
