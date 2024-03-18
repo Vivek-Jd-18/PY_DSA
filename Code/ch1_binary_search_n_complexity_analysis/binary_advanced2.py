@@ -8,7 +8,7 @@ def filter_duplicates(_list, _target, _mid_index):
         if _list[_mid_index-1] == _target and _mid_index-1 >= 0:
             return -1
         else:
-            return 0
+            return 0    
     elif _list[_mid_index] < _target:
         return 1
     else:

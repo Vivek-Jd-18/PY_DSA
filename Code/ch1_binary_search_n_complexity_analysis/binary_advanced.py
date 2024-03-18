@@ -41,7 +41,7 @@ def binary_ad(_list,_target):
 test1 = {"input":{"_list":[1,2,3,4],"_target":2},"output":1}
 test2 = {"input":{"_list":[11,23,34,45,67,89,90],"_target":89},"output":5}
 test3 = {"input":{"_list":[1,2,3,4],"_target":2},"output":1}
-    test4 = {"input":{"_list":[1,2,3,4,4,4,4,5,6,6,6,7,8,9],"_target":4},"output":3}
+test4 = {"input":{"_list":[1,2,3,4,4,4,4,5,6,6,6,7,8,9],"_target":4},"output":3}
 
 evaluate_test_case(binary_ad,test1)
 evaluate_test_case(binary_ad,test2)
