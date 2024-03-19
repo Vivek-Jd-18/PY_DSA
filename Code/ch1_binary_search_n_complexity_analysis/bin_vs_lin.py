@@ -63,4 +63,4 @@ print("O/P: {} result: {}  runtime: {}".format(res,passed,runtime))
 # O/P: 9999998 result: True  runtime: 1543.178
 # O/P: 9999998 result: True  runtime: 0.021
 
-# as you can see Binary Search is 73484.666666667 times faster than the Linear searc    h
+# as you can see Binary Search is 73484.666666667 times faster than the Linear search
