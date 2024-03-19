@@ -45,8 +45,8 @@ def get_last_index(_list, _target):
     return generic_binary_logic(0, len(_list)-1, condition)
 
 
-# test0 = [1,2,3,4,5,6,6,6,6,6,7,8,9,10]
-# print("first index {} and last index {} ".format(get_first_index(test0,6), get_last_index(test0,6)))
+test0 = [1,2,3,4,5,6,6,6,6,6,7,8,9,10]
+print("first index {} and last index {} ".format(get_first_index(test0,6), get_last_index(test0,6)))
 
 test1_first_occurance = {"input":{"_list":[1,2,3,3,3,3,4,5,6,7],"_target":3},"output":2}
 test1_last_occurance =  {"input":{"_list":[1,2,3,3,3,3,4,5,6,7],"_target":3},"output":5}
@@ -78,3 +78,8 @@ print("O/P: {} result: {}  runtime: {}".format(res,passed,runtime))
 # O/P: 3 result: True  runtime: 0.003
 # O/P: 9999998 result: True  runtime: 0.018
 # O/P: 9999998 result: True  runtime: 0.026
+
+def get_first_n_last_index(first_index,last_index):
+    return [first_index(test0,6), last_index(test0,6)]
+
+print(get_first_n_last_index(get_first_index,get_last_index))
