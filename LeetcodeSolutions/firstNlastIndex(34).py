@@ -3,7 +3,6 @@ def generic_binary(low, high, condition):
         while(low <= high):
             mid = (low+high) // 2
             res = condition(mid)
-
             if res == 'found':
                 return mid
             elif res == 'left':
@@ -15,11 +14,13 @@ def generic_binary(low, high, condition):
 def fetch_first_index(_list, _target):
     def condition(mid):
         if _list[mid] == _target:
-            if _list[mid-1] == _target and mid >= 0:
+            if mid > 0 and _list[mid-1] == _target:
                 return 'left'
             else:
+                print("second")
                 return 'found'
         elif _list[mid] < _target:
+            print("third")
             return 'right'
         else:
             return 'left' 
@@ -45,3 +46,6 @@ def result(first_indexer, last_indexer):
     return [first_indexer(test0, 1), last_indexer(test0, 1)]
 
 print(result(fetch_first_index,fetch_last_index))
+
+
+# print(fetch_first_index(test0, 1))
