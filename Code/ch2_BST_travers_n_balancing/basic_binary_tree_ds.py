@@ -126,22 +126,81 @@ node0.right = node2
     / \                      \        /
    1   4                     13      17   
 '''
-tree1 = (((1,3,4),5,7),10,((None,12,13),15,(17,20,None)))
+# tree1 = (((1,3,4),5,7),10,((None,12,13),15,(17,20,None)))
 
-def parse_tuple(data):
-    if isinstance(data,tuple) and len(data) == 3:
-        node = Tree(data[1])
-        node.left = parse_tuple(data[0])
-        node.right = parse_tuple(data[2])
-    elif data is None:
-        node = None
-    else:
-        node = Tree(data)
-    return node
+# def parse_tuple(data):
+#     if isinstance(data,tuple) and len(data) == 3:
+#         node = Tree(data[1])
+#         node.left = parse_tuple(data[0])
+#         node.right = parse_tuple(data[2])
+#     elif data is None:
+#         node = None
+#     else:
+#         node = Tree(data)
+#     return node
 
-n = parse_tuple(tree1)
+# n = parse_tuple(tree1)
 
-print("   ",n.key)
-print("  ",n.left.key," ",n.right.key)
-print(" ",n.left.left.key,n.left.right.key," ",n.right.left.key,n.right.right.key)
-print(n.left.left.left.key,n.left.left.right.key," ",n.right.left.right.key,n.right.right.left.key)
+# print("   ",n.key)
+# print("  ",n.left.key," ",n.right.key)
+# print(" ",n.left.left.key,n.left.right.key," ",n.right.left.key,n.right.right.key)
+# print(n.left.left.left.key,n.left.left.right.key," ",n.right.left.right.key,n.right.right.left.key)
+
+
+# # function to display keys back into tuple form
+# def display_keys(node, space = '\t', level = 0):
+#     if node is None:
+#         print(space*level + '*')
+#         return
+#     if node.left is None and node.right is None:
+#         print(space*level + str(node.key))
+#         return
+    
+#     display_keys(node.right,space, level+1)
+#     print(space*level + str(node.key))
+#     display_keys(node.left,space,level+1)
+
+# display_keys(n)
+
+
+
+
+
+
+
+
+
+
+
+
+# practicing simple binary tree
+class BinaryTree:
+    def __init__(self,key) -> None:
+        self.key = key
+        self.left = None
+        self.right = None
+    
+node0 = BinaryTree(1)
+node1 = BinaryTree(2)
+node2 = BinaryTree(3)
+
+node0.left = node1
+node0.right = node2
+# print(node0.left.key, node0.key, node0.right.key) # 2 1 3 
+
+# taking tree in form of tuple (based on a bellow reference bellow)
+'''
+        8
+       / \
+      3   10
+     / \    \
+    1   6    14
+       / \   /
+      4   7 13
+'''
+tup1 = ((1,3,(4,6,7)),8,(None,10,(13,14,None)))
+
+def create_binary_tree(data):
+    if isinstance(data, tuple) and len(data) == 3:
+        node = BinaryTree(data[1])
+        node.left = 
