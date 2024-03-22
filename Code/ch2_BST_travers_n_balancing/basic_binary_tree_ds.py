@@ -164,15 +164,6 @@ node0.right = node2
 
 
 
-
-
-
-
-
-
-
-
-
 # practicing simple binary tree
 class BinaryTree:
     def __init__(self,key) -> None:
@@ -200,7 +191,40 @@ node0.right = node2
 '''
 tup1 = ((1,3,(4,6,7)),8,(None,10,(13,14,None)))
 
-def create_binary_tree(data):
+def parse_tuple(data):
+    # print("-----",data,"-----")
     if isinstance(data, tuple) and len(data) == 3:
         node = BinaryTree(data[1])
-        node.left = 
+        node.left = parse_tuple(data[0])
+        node.right = parse_tuple(data[2])
+    elif data == None:
+        node = None
+    else: 
+        node = BinaryTree(data)
+    return node
+
+root = parse_tuple(tup1)
+# print(root.key) # 8 
+# print(root.left.right.left.key) # 4
+# print(root.right.right.left.key) #13
+
+# tree to tuple demo
+
+def tree_to_tuple(tree):
+    if isinstance(tree,BinaryTree):
+        if (tree.left is None and tree.right is None):
+            return tree.key
+        return(tree_to_tuple(tree.left), tree.key, tree_to_tuple(tree.right))
+    else:
+        return tree
+
+print(tree_to_tuple(root)) # ((1, 3, (4, 6, 7)), 8, (None, 10, (13, 14, None)))
+
+# Traverse a binary tree
+
+# Q.1: write a function to traverse a binary tree in in-order
+# Q.2: write a function to traverse a binary tree in pre-order
+# Q.3: write a function to traverse a binary tree in post-order
+
+# traversal refers to visiting each node of the tree at least once,
+# it generally means to addd each node to a list, and return that list.
