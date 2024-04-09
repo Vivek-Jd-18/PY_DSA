@@ -21,12 +21,29 @@ class UserDB:
             if user.username > self.users[i].username:
                 break
             i+=1
-        self.users[i] = user
+        self.users.insert(i,user)
     
     def find(self, username)->User:
-        return (i for i in self.users if i.username == username)
+        return next((u for u in self.users if u.username == username), None)
     
-    # def update
+    def update(self, user:User)->None:
+        target:User = self.find(user.username)
+        target.name,target.email = user.name, user.email
+    
+    def list(self)->list[User]:
+        return self.users   
+
+alvarez = User("alvarez","Julian","jalvarez@gmail.com")
+silva = User("silva","Bernardo","bsilva@gmail.com")
+dias = User("dias","Ruben","rdias@gmail.com")
+
+db = UserDB()
+db.insert(alvarez)
+print(db.list())
+print(db.find("alvarez"))
+db.update(User(username="alvarez",name="Julian Alvarez",email="jalvarez009@gmail.com"))
+print(db.list())
+
 
 # binary tree node Model
 class BSTNode:

@@ -67,7 +67,7 @@ def inorder(node:PlayerBST)->list[PlayerBST|None]:
 
 print(inorder(t))
 
-def is_balanced(node:PlayerBST)->(bool,int):
+def is_balanced(node:PlayerBST):
     if node is None:
         return True, 0
     balance_left, height_l = is_balanced(node.left) 
@@ -76,4 +76,21 @@ def is_balanced(node:PlayerBST)->(bool,int):
     height = 1 + max(height_l, height_r)
     return balanced, height
 
-print(is_balanced(t))
+print("jovian approach: ",is_balanced(t))
+
+def is_balanced2(node:PlayerBST,index:int, number_nodes:int)->bool:
+    if node is None:
+        return True     
+    # If index assigned to current nodes is more than
+    # number of nodes in tree, then tree is not complete
+    if index >= number_nodes :
+        return False     
+    # Recur for left and right subtrees
+    return (is_balanced2(node.left , 2*index+1 , number_nodes)and is_balanced2(node.right, 2*index+2, number_nodes))
+
+def total_nodes(node:PlayerBST)->int:
+    if node is None:
+        return 0
+    return 1 + total_nodes(node.left) + total_nodes(node.right)
+
+print("gfg approach: ",is_balanced2(t,0,total_nodes(t)))
