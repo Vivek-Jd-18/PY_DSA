@@ -57,14 +57,114 @@ saka = Player("saka","arsenal",22)
 jesus = Player("jesus","manchester city",27)
 
 db = PlayerDB()
-print("initial list: ",db.list())
+# print("initial list: ",db.list())
 db.insert(martinelli)
 db.insert(rashford)
 db.insert(gernacho)
 db.insert(saka)
 db.insert(jesus)
-print(db.find("martinelli"))
+# print(db.find("martinelli"))
 db.update(Player("martinelli","arsenal",25))
-print("after populating",db.list())
+# print("after populating",db.list())
 
-print([d.name, d for d in db])
+def display_keys(node, space = '\t', level = 0):
+    if node is None:
+        print(space*level + '*')
+        return
+    if node.left is None and node.right is None:
+        print(space*level + str(node.key))
+        return
+    
+    display_keys(node.right,space, level+1)
+    print(space*level + str(node.key))
+    display_keys(node.left,space,level+1)
+
+data = ([(d.name, d) for d in db.list()])
+
+class PlayerNode:
+    def __init__(self, key:str, value:Player) -> None:
+        self.key = key
+        self.value = value
+        self.left = None
+        self.right = None
+        self.parent = None
+
+def make_balanced_bst(data:list[PlayerNode], low = 0, high = None, parent = None):
+    if high is None:
+        high = len(data)-1
+    if low > high:
+        return None
+    
+    mid = (low + high) // 2
+    key, value = data[mid]
+    root = PlayerNode(key, value)
+    root.parent = parent
+    root.left = make_balanced_bst(data, low, mid-1, root)
+    root.right = make_balanced_bst(data, mid+1, high, root)
+
+    return root
+
+bbst = make_balanced_bst(data)
+# display_keys(bbst)
+
+# Practiced ::
+# def make_balanced_bst2(data, low=0, high=None, parent=None):
+#     if high is None:
+#         high = len(data)-1
+#     if low > high:
+#         return None
+#     mid = (low+high) // 2
+#     key, value = data[mid]
+
+#     root:PlayerNode = PlayerNode(key, value)
+#     root.left = make_balanced_bst2(data, low, mid-1, parent)
+#     root.right = make_balanced_bst2(data, mid+1, high, parent)
+#     root.parent = parent
+
+#     return root
+
+# display_keys(make_balanced_bst2(data))
+
+
+# Overview of Complexities of Balanced binary Search Tree:
+
+# - Insertion: O(n) + O(log n) = O(n) , because we first have to sort the data O(n) before inserting it in balanced binary search tree O(log n)
+# - update   : O(log n)
+# - find(search an element) = O(log n)
+# - list all : O(n)
+
+# we can overcome insertion complexity which is O(n), we can perform balancing peridically, 
+# assuming we can balance our tree at each 1000th insertion. or balancing it at every each hour
+
+# so what's the real imporvement between O(n) and O(log n) ??
+
+# lets try it out
+
+# suppose we have 100 million users to keep record of
+
+import math
+import time
+
+print(math.log(100000000, 2))
+
+start_time = time.time()
+for i in range(26):
+    j = i
+end_time = time.time()
+time_taken_bbst = end_time - start_time
+
+print("bbst: {:.9f} seconds".format(time_taken_bbst))
+# bbst: 0.000003338 seconds
+
+start_time = time.time()
+for i in range(100000000):
+    j = i
+end_time = time.time()
+time_taken_linear = end_time - start_time
+
+print("linear: {:.9f} seconds".format(time_taken_linear))
+# linear: 6.639140606 seconds
+
+# this is 300,000 faster than linear approach
+
+

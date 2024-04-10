@@ -20,7 +20,7 @@ class PlayerBST:
 def insert_in_bst(node:None|PlayerBST, key:str, value:str)->PlayerBST:
     if node is None:
         return PlayerBST(key,value)
-    if key > node.key:
+    if key > node.key:  
         node.right = insert_in_bst(node.right, key, value)
         node.right.parent = node
     if key < node.key:
