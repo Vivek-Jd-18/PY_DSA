@@ -64,10 +64,10 @@ def update(node:UserNode, key:str, value:UserNode):
         user.key, user.value = key, value
 
 # returns all users in ordered manner
-def inorder(node:UserNode):
+def list_all(node:UserNode):
     if node is None:
         return []
-    return [inorder(node.left)+[node.key, node.value], inorder(node.right)]
+    return list_all(node.left)+[(node.key, node.value)]+ list_all(node.right)
 
 # returns total numbers of users
 def total_nodes(node:UserNode):
@@ -88,6 +88,22 @@ def display_keys(node, space = '\t', level = 0):
     print(space*level + str(node.key))
     display_keys(node.left,space,level+1)
 
+# function to balance Binary Tree
+def make_balanced_bst(data:list[UserNode], low = 0, high = None, parent = None):
+    if high is None:
+        high = len(data)-1
+    if low > high:
+        return None
+    
+    mid = (low + high) // 2
+    key, value = data[mid]
+    root = UserNode(key, value)
+    root.parent = parent
+    root.left = make_balanced_bst(data, low, mid-1, root)
+    root.right = make_balanced_bst(data, mid+1, high, root)
+
+    return root
+
 # main class which is a modal for an ideal BALANCED-BINARY-SEARCH-TREE modal 
 class TreeNode:
     def __init__(self) -> None:
@@ -97,6 +113,7 @@ class TreeNode:
         node = find(self.root, key)
         if not node:
             self.root = insert(self.root, key, value)
+            self.root = make_balanced_bst(list_all(self.root))            
         else:
             update(self.root, key, value)
     
@@ -104,7 +121,7 @@ class TreeNode:
         return find(self.root, key)
     
     def __iter__(self)->list[UserNode]:
-        return (user for user in inorder(self.root))
+        return (user for user in list_all(self.root))
     
     def __len__(self)->int:
         return total_nodes(self.root)
