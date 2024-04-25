@@ -1,32 +1,27 @@
 # merge short
-
-def merge_short(list)->list[int]:
-    l = len(list)
-    if l <= 1:
-        return list
-    mid = l // 2
-    left = list[:mid]
-    right = list[mid:]
-    left_list, right_list = merge_short(left), merge_short(right)
-    return merge(left_list, right_list)
-
-def merge(left_list, right_list)->list[int]:
-    li = []
-    i,j = 0,0
-
+def merge(left_list, right_list, depth=0) -> list[int]:
+    print(' '*depth, 'merge', left_list, right_list)
+    i, j, li = 0, 0, []
     while i < len(left_list) and j < len(right_list):
         if left_list[i] <= right_list[j]:
             li.append(left_list[i])
-            i+=1
+            i += 1
         else:
             li.append(right_list[j])
-            j+=1
-    left, right = left_list[i:], right_list[j:]
-    return li + left + right
+            j += 1
+    return li + left_list[i:]+ right_list[j:]
 
-l = [2,4,6,8,1,3,7]
+def merge_short(list, depth = 0) -> list[int]:
+    print(' '*depth, 'merge_sort', list)
+    if len(list) < 2:
+        return list
+    mid = len(list) // 2
+    return merge(merge_short(list[:mid],depth+1), merge_short(list[mid:],depth+1),depth+1)
 
+l = [4, 1, 3, 9, 7]
+# merge_short(l)
 print(merge_short(l))
+
 
 
 

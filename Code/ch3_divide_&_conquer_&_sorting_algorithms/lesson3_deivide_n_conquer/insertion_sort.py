@@ -12,3 +12,7 @@ def insertion_sort(list:list)->list:
 unsorted1 = [7,9,5,2,4,1]
 insertion_sort(unsorted1)
 print(unsorted1)
+
+# Time complexity = 1 x forloop * 1 x while loop
+# Time complexity = 2 x loops
+# Time complexity = O(n^2)
